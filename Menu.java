@@ -11,11 +11,11 @@ public class Menu extends JFrame {
     public Menu() throws IOException {
         super("Solar system");
 
-        ImageIcon backgroundImage = new ImageIcon("background.png");
-        Image img=backgroundImage.getImage();
-        Image temp=img.getScaledInstance(500,600,Image.SCALE_SMOOTH);
-        backgroundImage=new ImageIcon(temp);
-        JLabel back=new JLabel(backgroundImage);
+        //ImageIcon backgroundImage = new ImageIcon("background.png");
+        //Image img=backgroundImage.getImage();
+        //Image temp=img.getScaledInstance(500,600,Image.SCALE_SMOOTH);
+        //backgroundImage=new ImageIcon(temp);
+        //JLabel back=new JLabel(backgroundImage);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -25,8 +25,8 @@ public class Menu extends JFrame {
         panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
         add(panel);
-        add(back);
-        setSize(400,400);
+        //add(back);
+        setSize(500,600);
         setLocationRelativeTo(null);
 
         setVisible(true);
