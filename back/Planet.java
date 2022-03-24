@@ -1,3 +1,5 @@
+package back;
+
 import static java.lang.Math.pow;
 
 public class Planet {
@@ -10,7 +12,7 @@ public class Planet {
     private long odleglosc;
     private double kat;
     double x,y;
-    public Planet(double x,double y,Sun s)
+    public Planet(double x, double y, Sun s)
     {
         this.x=x;
         this.y=y;
@@ -51,7 +53,7 @@ public class Planet {
     {
         this.speed= (long) Math.sqrt(spaceG*s.getMass()/odleglosc);
     }
-    public void aktualizacja(double czas,Sun s)
+    public void aktualizacja(double czas, Sun s)
     {
         przemieszczenieSpeed(czas);
         newSpeed(s);

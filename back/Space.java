@@ -1,5 +1,6 @@
-import java.util.ArrayList;
-import java.lang.Math.*;
+package back;
+
+import back.Planet;
 
 import static java.lang.Math.pow;
 
