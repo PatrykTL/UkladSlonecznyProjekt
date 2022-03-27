@@ -12,9 +12,9 @@ public class Simulation extends Canvas implements Runnable {
     private Handler handler;
 
     public Simulation(){
-        new Window(WIDTH, HEIGHT, "Let's Build a Simulation", this);
-
         handler = new Handler();
+
+        new Window(WIDTH, HEIGHT, "Let's Build a Simulation", this);
 
         handler.addObject(new SPlanet(100,100,ID.Planet));
     }
