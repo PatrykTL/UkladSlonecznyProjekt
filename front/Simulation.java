@@ -22,9 +22,6 @@ public class Simulation extends Canvas implements Runnable {
 
         new Window(WIDTH, HEIGHT, "Let's Build a Simulation", this);
 
-        BufferedImageLoader loader = new BufferedImageLoader();
-
-        spriteSheet = loader.loadImage("/slonce.PNG");
 
         Sun s = new Sun(10000);
         Planet p1 = new Planet(0,100,s,12.5,0);
