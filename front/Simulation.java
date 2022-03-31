@@ -1,22 +1,38 @@
 package front;
 
+import back.*;
+
 import java.awt.*;
 import java.awt.image.BufferStrategy;
+import java.awt.image.BufferedImage;
 
 public class Simulation extends Canvas implements Runnable {
-
-    public static final int WIDTH = 640, HEIGHT = WIDTH / 12 * 9;
-
+    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+    public final double WIDTH = screenSize.getWidth(), HEIGHT = screenSize.getHeight();
+    private double centerX = WIDTH/2;
+    private double centerY = HEIGHT/2;
     private Thread thread;
     private boolean running = false;
     private Handler handler;
+    public static Image spriteSheet;
+
 
     public Simulation(){
         handler = new Handler();
 
         new Window(WIDTH, HEIGHT, "Let's Build a Simulation", this);
 
-        handler.addObject(new SPlanet(100,100,ID.Planet));
+        BufferedImageLoader loader = new BufferedImageLoader();
+
+        spriteSheet = loader.loadImage("/slonce.PNG");
+
+        Sun s = new Sun(10000);
+        Planet p1 = new Planet(0,100,s,12.5,0);
+        Planet p2 = new Planet(0, 200, s , 7, 0);
+        handler.addObject(new SStar(centerX,centerY));
+        handler.addObject(new SPlanet(p1,centerX,centerY));
+        handler.addObject(new SPlanet(p2,centerX,centerY));
+
     }
 
     public synchronized void start(){
@@ -79,7 +95,7 @@ public class Simulation extends Canvas implements Runnable {
         Graphics g = bs.getDrawGraphics();
 
         g.setColor(Color.BLACK);
-        g.fillRect(0,0,WIDTH,HEIGHT);
+        g.fillRect(0,0,(int)WIDTH,(int)HEIGHT);
 
         handler.render(g);
 

@@ -3,12 +3,13 @@ package back;
 import static java.lang.Math.pow;
 
 public class Planet {
-    public final double G= 100; //(float) pow(10,-11)*6667430;
+    public final double G; //(float) pow(10,-11)*6667430;
     private double mass;
     private double speedX;
     private double speedY;
     private double odleglosc;
     private double x,y;
+    private Sun s;
     public Planet(double x, double y, Sun s, double speedX, double speedY)
     {
         this.x=x;
@@ -16,10 +17,12 @@ public class Planet {
         this.odleglosc= (double) Math.sqrt((x*x)+(y*y));
         this.speedX = speedX;
         this.speedY = speedY;
-        System.out.println("odleglosc: "+odleglosc);
-        System.out.println("predkoscX: "+speedX);
-        System.out.println("predkoscY: "+speedY);
-        System.out.println("x= "+ this.x + " y= " + this.y);
+        //System.out.println("odleglosc: "+odleglosc);
+        //System.out.println("predkoscX: "+speedX);
+        //System.out.println("predkoscY: "+speedY);
+        //System.out.println("x= "+ this.x + " y= " + this.y);
+        this.G = 1;
+        this.s = s;
     }
 
     public void actualizationOfPosition(double czas)
@@ -28,7 +31,7 @@ public class Planet {
         this.y = this.y + speedY*czas;
     }
 
-    public void actualizationOfSpeed(Sun s,double czas)
+    public void actualizationOfSpeed(double czas)
     {
         double speed = speedFromGravity((double)s.getMass(),czas);
         this.speedX = speedX - speedXFromGravity(speed);
@@ -41,7 +44,7 @@ public class Planet {
     }
     public double speedFromGravity(double M, double czas)
     {
-        System.out.println(" M = " + M + " czas = " + czas + " G = " + G + " odleglosc = " + odleglosc + " speed = " + (double) ((M*G*czas)/(odleglosc*odleglosc)));
+        //System.out.println(" M = " + M + " czas = " + czas + " G = " + G + " odleglosc = " + odleglosc + " speed = " + (double) ((M*G*czas)/(odleglosc*odleglosc)));
         return (double) ((M*G*czas)/(odleglosc*odleglosc));
     }
 
@@ -54,15 +57,15 @@ public class Planet {
     {
             return (double) (speed*(y/odleglosc));
     }
-    public void aktualizacja(double czas, Sun s)
+    public void aktualizacja(double czas)
     {
         actualizationOfPosition(czas);
         actualizationOfDistance();
-        actualizationOfSpeed(s,czas);
-        System.out.println("odleglosc: "+odleglosc);
+        actualizationOfSpeed(czas);
+        //System.out.println("odleglosc: "+odleglosc);
         System.out.println("predkoscX: "+speedX);
         System.out.println("predkoscY: "+speedY);
-        System.out.println("x= "+ this.x + " y= " + this.y);
+        //System.out.println("x= "+ this.x + " y= " + this.y);
     }
     public void setX(double x)
     {
@@ -71,6 +74,14 @@ public class Planet {
     public void setY(double y)
     {
         this.y=y;
+    }
+
+    public double getX() {
+        return x;
+    }
+
+    public double getY() {
+        return y;
     }
 }
 

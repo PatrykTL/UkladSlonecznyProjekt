@@ -5,11 +5,11 @@ import java.awt.*;
 public abstract class SimulationObject
 {
 
-    protected int x, y;
+    protected double x, y;
     protected ID id;
     protected int velX, velY;
 
-    public SimulationObject(int x,int y, ID id)
+    public SimulationObject(double x,double y, ID id)
     {
         this.x = x;
         this.y = y;
