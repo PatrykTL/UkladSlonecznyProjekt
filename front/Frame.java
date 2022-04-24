@@ -1,16 +1,16 @@
 package front;
 
+
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 
-
-public class Menu extends JFrame {
+public class Frame extends JFrame {
     private JButton start = new JButton("Start");
     private JButton exit = new JButton("Exit");
     private JPanel panel = new JPanel();
 
-    public Menu() throws IOException {
+    public Frame() throws IOException {
         super("Solar system");
 
         //ImageIcon backgroundImage = new ImageIcon("background.png");

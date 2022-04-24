@@ -2,33 +2,47 @@ package front;
 
 import back.*;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 
 public class Simulation extends Canvas implements Runnable {
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-    public final double WIDTH = screenSize.getWidth(), HEIGHT = screenSize.getHeight();
-    private double centerX = WIDTH/2;
-    private double centerY = HEIGHT/2;
+    private final double WIDTH = screenSize.getWidth(), HEIGHT = screenSize.getHeight();
+    private double centerX = WIDTH / 2;
+    private double centerY = HEIGHT / 2;
     private Thread thread;
     private boolean running = false;
     private Handler handler;
-    public static Image spriteSheet;
+    private int i;
+    Window window;
+    private Graphics windowGraphic2;
+    //public static Image spriteSheet;
+    //private BufferedImage canvas;
 
 
     public Simulation(){
         handler = new Handler();
 
-        new Window(WIDTH, HEIGHT, "Let's Build a Simulation", this);
-
-
+        window = new Window(WIDTH, HEIGHT, "Let's Build a Simulation", this);
+        window.createBufferStrategy(2);
+        windowGraphic2 = window.getBufferStrategy().getDrawGraphics();
+        //canvas = new BufferedImage((int) WIDTH, (int) HEIGHT,BufferedImage.TYPE_INT_ARGB);
+        i = 0;
         Sun s = new Sun(10000);
-        Planet p1 = new Planet(0,100,s,12.5,0);
-        Planet p2 = new Planet(0, 200, s , 7, 0);
-        handler.addObject(new SStar(centerX,centerY));
-        handler.addObject(new SPlanet(p1,centerX,centerY));
-        handler.addObject(new SPlanet(p2,centerX,centerY));
+        Planet p1 = new Planet(0, 100, s, 10, 0);
+        Planet p2 = new Planet(0, 200, s, 6, 0);
+        Planet p3 = new Planet(0, 300, s, 3, 0);
+
+
+        STraces sTraces = new STraces(100, 100, ID.Trace);
+
+        //handler.addObject(sTraces);
+        handler.addObject(new SStar(centerX, centerY));
+        handler.addObject(new SPlanet(p1, centerX, centerY));
+        handler.addObject(new SPlanet(p2, centerX, centerY));
+        handler.addObject(new SPlanet(p3, centerX, centerY));
 
     }
 
@@ -99,7 +113,12 @@ public class Simulation extends Canvas implements Runnable {
         g.dispose();
         bs.show();
     }
-
+    public Graphics getWindowGraphic2(){
+        return windowGraphic2;
+    }
+    public void setWindowGraphic2(int x, int y){
+        windowGraphic2.fillRect(x,y,1,1);
+    }
 
     public static void main(String[] args) {
         new Simulation();

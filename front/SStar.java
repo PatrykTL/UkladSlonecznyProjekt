@@ -21,9 +21,9 @@ public class SStar extends SimulationObject implements ImageObserver {
     public void render(Graphics g) {
         int pWidth = 64;
         int pHeigth = 64;
-        //g.setColor(Color.yellow);
-        //g.fillRect((int)x-(pWidth/2),(int)y-(pHeigth/2),pWidth,pHeigth);
-        g.drawImage(starImage,pWidth,pHeigth,null);
+        g.setColor(Color.yellow);
+        g.fillRect((int)x-(pWidth/2),(int)y-(pHeigth/2),pWidth,pHeigth);
+        //g.drawImage(starImage,pWidth,pHeigth,null);
     }
 
     @Override
