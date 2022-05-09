@@ -10,13 +10,15 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.LinkedList;
 
 public class Simulation extends JPanel {
     LinkedList<SimulationObject> object = new LinkedList<>();
     private final static Dimension WINDOWS_DIMENSION = Toolkit.getDefaultToolkit().getScreenSize();
-    private final double centerX;
-    private final double centerY;
+    private double centerX;
+    private double centerY;
 
     public Simulation() {
 
@@ -25,12 +27,12 @@ public class Simulation extends JPanel {
         Sun s = new Sun(10000);
         Planet p1 = new Planet(0, 100, s, 12.5, 0);
         Planet p2 = new Planet(0, 200, s, 7, 0);
-        Planet p3 = new Planet(0, 100, s, 12.5, 0);
-        Planet p4 = new Planet(0, 200, s, 7, 0);
-        Planet p5 = new Planet(0, 100, s, 12.5, 0);
-        Planet p6 = new Planet(0, 200, s, 7, 0);
-        Planet p7 = new Planet(0, 100, s, 12.5, 0);
-        Planet p8 = new Planet(0, 200, s, 7, 0);
+        Planet p3 = new Planet(0, 300, s, 5, 0);
+        Planet p4 = new Planet(0, 400, s, 3, 0);
+        Planet p5 = new Planet(0, 500, s, 2, 0);
+        Planet p6 = new Planet(0, 600, s, 1, 0);
+        Planet p7 = new Planet(0, 700, s, 0.5, 0);
+        Planet p8 = new Planet(0, 800, s, 0.25, 0);
 
         object.add(new SStar(centerX, centerY));
         object.add(new SPlanet(p1, centerX, centerY));

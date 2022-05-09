@@ -1,5 +1,7 @@
 package back;
 
+import java.math.BigDecimal;
+
 import static java.lang.Math.pow;
 
 public class Planet {
@@ -33,7 +35,7 @@ public class Planet {
 
     public void actualizationOfSpeed(double czas)
     {
-        double speed = speedFromGravity((double)s.getMass(),czas);
+        double speed = speedFromGravity(s.getMass(),czas);
         this.speedX = speedX - speedXFromGravity(speed);
         this.speedY = speedY - speedYFromGravity(speed);
     }
