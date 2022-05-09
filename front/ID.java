@@ -2,6 +2,6 @@ package front;
 
 public enum ID {
     Planet(),
-    Star();
-
+    Star(),
+    Trace();
 }

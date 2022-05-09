@@ -1,22 +1,22 @@
 package front;
 
+import javax.swing.*;
 import java.awt.*;
 
-public abstract class SimulationObject
+public abstract class SimulationObject extends JComponent
 {
 
     protected double x, y;
-    protected ID id;
+    protected ID planetoidType;
     protected int velX, velY;
 
-    public SimulationObject(double x,double y, ID id)
+    public SimulationObject(double x,double y, ID planetoidType)
     {
         this.x = x;
         this.y = y;
-        this.id = id;
+        this.planetoidType = planetoidType;
     }
 
     public abstract void tick();
-    public abstract void render(Graphics g);
 
 }

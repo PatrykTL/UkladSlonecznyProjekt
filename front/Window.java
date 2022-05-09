@@ -17,6 +17,6 @@ public class Window extends Canvas {
             frame.setLocationRelativeTo(null);
             frame.add(simulation);
             frame.setVisible(true);
-            simulation.start();
+            //simulation.start();
         }
 }

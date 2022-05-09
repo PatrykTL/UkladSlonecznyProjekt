@@ -19,7 +19,7 @@ public class Handler {
         for(int i = 0; i < object.size(); i++){
             SimulationObject tempObject = object.get(i);
 
-            tempObject.render(g);
+            tempObject.paintComponents(g);
         }
     }
 

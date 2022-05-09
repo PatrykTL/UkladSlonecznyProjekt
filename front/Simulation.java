@@ -1,107 +1,82 @@
 package front;
 
-import back.*;
+import back.Planet;
+import back.Sun;
+import front.SPlanet;
+import front.SStar;
+import front.SimulationObject;
 
+import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferStrategy;
-import java.awt.image.BufferedImage;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.LinkedList;
 
-public class Simulation extends Canvas implements Runnable {
-    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-    public final double WIDTH = screenSize.getWidth(), HEIGHT = screenSize.getHeight();
-    private double centerX = WIDTH/2;
-    private double centerY = HEIGHT/2;
-    private Thread thread;
-    private boolean running = false;
-    private Handler handler;
-    public static Image spriteSheet;
+public class Simulation extends JPanel {
+    LinkedList<SimulationObject> object = new LinkedList<>();
+    private final static Dimension WINDOWS_DIMENSION = Toolkit.getDefaultToolkit().getScreenSize();
+    private final double centerX;
+    private final double centerY;
 
+    public Simulation() {
 
-    public Simulation(){
-        handler = new Handler();
-
-        new Window(WIDTH, HEIGHT, "Let's Build a Simulation", this);
-
-
+        centerY = (double) WINDOWS_DIMENSION.height / 2;
+        centerX = (double) WINDOWS_DIMENSION.width / 2;
         Sun s = new Sun(10000);
-        Planet p1 = new Planet(0,100,s,12.5,0);
-        Planet p2 = new Planet(0, 200, s , 7, 0);
-        handler.addObject(new SStar(centerX,centerY));
-        handler.addObject(new SPlanet(p1,centerX,centerY));
-        handler.addObject(new SPlanet(p2,centerX,centerY));
+        Planet p1 = new Planet(0, 100, s, 12.5, 0);
+        Planet p2 = new Planet(0, 200, s, 7, 0);
+        Planet p3 = new Planet(0, 100, s, 12.5, 0);
+        Planet p4 = new Planet(0, 200, s, 7, 0);
+        Planet p5 = new Planet(0, 100, s, 12.5, 0);
+        Planet p6 = new Planet(0, 200, s, 7, 0);
+        Planet p7 = new Planet(0, 100, s, 12.5, 0);
+        Planet p8 = new Planet(0, 200, s, 7, 0);
 
-    }
+        object.add(new SStar(centerX, centerY));
+        object.add(new SPlanet(p1, centerX, centerY));
+        object.add(new SPlanet(p2, centerX, centerY));
+        object.add(new SPlanet(p3, centerX, centerY));
+        object.add(new SPlanet(p4, centerX, centerY));
+        object.add(new SPlanet(p5, centerX, centerY));
+        object.add(new SPlanet(p6, centerX, centerY));
+        object.add(new SPlanet(p7, centerX, centerY));
+        object.add(new SPlanet(p8, centerX, centerY));
 
-    public synchronized void start(){
-        thread = new Thread(this);
-        thread.start();
-        running = true;
 
-    }
-    public synchronized void stop(){
-        try{
-            thread.join();
-            running = false;
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+        Timer timer = new Timer(30, new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                for (SimulationObject shape : object) {
+                    shape.tick();
+                    repaint();
+                }
+            }
+        });
+        timer.start();
     }
 
     @Override
-    public void run() {
-        long lastTime = System.nanoTime();
-        double amountOfTicks = 60.0;
-        double ns = 1000000000 / amountOfTicks;
-        double delta = 0;
-        long timer = System.currentTimeMillis();
-        int frames = 0;
-        while(running){ // SIMULATION LOOP
-            {
-                long now = System.nanoTime();
-                delta += (now - lastTime) / ns;
-                lastTime = now;
-                while (delta >= 1) {
-                    tick();
-                    delta--;
-                }
-                if (running)
-                    render();
-                frames++;
-
-                if (System.currentTimeMillis() - timer > 1000) {
-                    timer += 1000;
-                    System.out.println("FPS: " + frames);
-                    frames = 0;
-                }
-            }
-
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        for (SimulationObject simulationObject : object) {
+            simulationObject.paintComponents(g);
         }
-        stop();
-    }
 
-    private void tick(){
-        handler.tick();
-    }
-
-    private void render(){
-        BufferStrategy bs = this.getBufferStrategy();
-        if(bs == null){
-            this.createBufferStrategy(3);
-            return;
-        }
-        Graphics g = bs.getDrawGraphics();
-
-        g.setColor(Color.BLACK);
-        g.fillRect(0,0,(int)WIDTH,(int)HEIGHT);
-
-        handler.render(g);
-
-        g.dispose();
-        bs.show();
     }
 
 
     public static void main(String[] args) {
-        new Simulation();
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                JFrame frame = new JFrame();
+                Simulation mainWindow = new Simulation();
+                mainWindow.setBackground(Color.BLACK);
+                frame.add(mainWindow);
+                frame.pack();
+                frame.setSize(WINDOWS_DIMENSION);
+                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                frame.setLocationRelativeTo(null);
+                frame.setVisible(true);
+            }
+        });
     }
 }
