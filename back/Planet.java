@@ -1,63 +1,68 @@
 package back;
 
 import java.math.BigDecimal;
+import java.math.MathContext;
+import java.math.RoundingMode;
 
 import static java.lang.Math.pow;
+import static java.math.BigDecimal.valueOf;
 
 public class Planet {
-    public final double G; //(float) pow(10,-11)*6667430;
-    private double mass;
-    private double speedX;
-    private double speedY;
-    private double odleglosc;
-    private double x,y;
+    private BigDecimal G; //(float) ;
+    private BigDecimal mass;
+    private BigDecimal speedX;
+    private BigDecimal speedY;
+    private BigDecimal odleglosc;
+    private BigDecimal x,y;
     private Sun s;
-    public Planet(double x, double y, Sun s, double speedX, double speedY)
+    private MathContext mc;
+    public Planet(BigDecimal x, BigDecimal y, Sun s, BigDecimal speedX, BigDecimal speedY,MathContext mc)
     {
+        this.mc = mc;
         this.x=x;
         this.y=y;
-        this.odleglosc= (double) Math.sqrt((x*x)+(y*y));
+        this.odleglosc= (BigDecimal) ((x.add(x)).add(y.add(y)).sqrt(mc));
         this.speedX = speedX;
         this.speedY = speedY;
         //System.out.println("odleglosc: "+odleglosc);
         //System.out.println("predkoscX: "+speedX);
         //System.out.println("predkoscY: "+speedY);
         //System.out.println("x= "+ this.x + " y= " + this.y);
-        this.G = 1;
+        this.G = new BigDecimal("0.00000000000086498928");
         this.s = s;
     }
 
     public void actualizationOfPosition(double czas)
     {
-        this.x = this.x + speedX*czas;
-        this.y = this.y + speedY*czas;
+        this.x = x.add(speedX.multiply(valueOf(czas), mc));
+        this.y = y.add(speedY.multiply(valueOf(czas), mc));
     }
 
     public void actualizationOfSpeed(double czas)
     {
-        double speed = speedFromGravity(s.getMass(),czas);
-        this.speedX = speedX - speedXFromGravity(speed);
-        this.speedY = speedY - speedYFromGravity(speed);
+        BigDecimal speed = speedFromGravity(s.getMass(),czas);
+        this.speedX = speedX.subtract(speedXFromGravity(speed));
+        this.speedY = speedY.subtract(speedYFromGravity(speed));
     }
 
     public void actualizationOfDistance()
     {
-        odleglosc = (double) Math.sqrt((x*x)+(y*y));
+        odleglosc = (((x.multiply(x)).add(y.multiply(y))).sqrt(mc));
     }
-    public double speedFromGravity(double M, double czas)
+    public BigDecimal speedFromGravity(BigDecimal M, double czas)
     {
         //System.out.println(" M = " + M + " czas = " + czas + " G = " + G + " odleglosc = " + odleglosc + " speed = " + (double) ((M*G*czas)/(odleglosc*odleglosc)));
-        return (double) ((M*G*czas)/(odleglosc*odleglosc));
+        return (BigDecimal) ((M.multiply(G.multiply(BigDecimal.valueOf(czas)))).divide(odleglosc.multiply(odleglosc),50, RoundingMode.HALF_UP));
     }
 
-    public double speedXFromGravity(double speed)
+    public BigDecimal speedXFromGravity(BigDecimal speed)
     {
-            return (double) (speed*(x/odleglosc));
+            return (BigDecimal) (speed.multiply(x.divide(odleglosc,50,RoundingMode.HALF_UP)));
     }
 
-    public double speedYFromGravity(double speed)
+    public BigDecimal speedYFromGravity(BigDecimal speed)
     {
-            return (double) (speed*(y/odleglosc));
+            return (BigDecimal) (speed.multiply(y.divide(odleglosc,50,RoundingMode.HALF_UP)));
     }
     public void aktualizacja(double czas)
     {
@@ -69,20 +74,20 @@ public class Planet {
         System.out.println("predkoscY: "+speedY);
         //System.out.println("x= "+ this.x + " y= " + this.y);
     }
-    public void setX(double x)
+    public void setX(BigDecimal x)
     {
-        this.x=x;
+        this.x= new BigDecimal("x");
     }
-    public void setY(double y)
+    public void setY(BigDecimal y)
     {
-        this.y=y;
+        this.y= new BigDecimal("y");
     }
 
-    public double getX() {
+    public BigDecimal getX() {
         return x;
     }
 
-    public double getY() {
+    public BigDecimal getY() {
         return y;
     }
 }

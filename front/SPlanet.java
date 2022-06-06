@@ -11,13 +11,13 @@ import java.util.Set;
 public class SPlanet extends SimulationObject {
 
     private Planet p;
-    private double centerX;
-    private double centerY;
+
     private Simulation simulation;
     Set<STrace> sTrace;
-
-    public SPlanet(Planet p, double centerX, double centerY, Simulation simulation) {
-        super(p.getX() + centerX, -p.getY() + centerY, ID.Planet);
+    private Adapter adapter;
+/*
+    public SPlanet(Planet p, Simulation simulation, Adapter adapter) {
+        super(adapter.dostosujDoEkranu(p.getX()). + centerX, -p.getY() + centerY, ID.Planet);
         this.p = p;
         this.centerX = centerX;
         this.centerY = centerY;
@@ -25,17 +25,20 @@ public class SPlanet extends SimulationObject {
 
     }
 
+    adapter.dostosujDoEkranu(centerX,p.getX()). + centerX, -p.getY() + centerY)
 
-    public SPlanet(Planet p, double centerX, double centerY) {
-        super(p.getX() + centerX, -p.getY() + centerY, ID.Planet);
+    */
+
+    public SPlanet(Planet p, Adapter adapter) {
+        super(adapter.ostatecznaPozycjaX(p.getX()), adapter.ostatecznaPozycjaY(p.getY()), ID.Planet);
+        this.adapter = adapter;
         this.p = p;
-        this.centerX = centerX;
-        this.centerY = centerY;
+
     }
 
     @Override
     public void tick() {
-        this.aktualizacjaS(0.6);
+        this.aktualizacjaS(365);
     }
 
 
@@ -48,6 +51,8 @@ public class SPlanet extends SimulationObject {
         g.setColor(Color.white);
         //g.fillRect((int) x - (pWidth / 2), (int) y - (pHeigth / 2), pWidth, pHeigth);
         g.fillOval((int) x - (pWidth / 2), (int) y - (pHeigth / 2), pWidth, pHeigth);
+        //System.out.println((int) x - (pWidth / 2));
+        //System.out.println((int) y - (pHeigth / 2));
         if (sTrace == null)
             sTrace = new HashSet<>();
 
@@ -60,9 +65,10 @@ public class SPlanet extends SimulationObject {
     }
 
     public void aktualizacjaS(double time) {
-        System.out.println("x " + p.getX());
-        p.aktualizacja(0.1);
-        this.x = p.getX() + centerX;
-        this.y = -p.getY() + centerY;
+        System.out.println("x " + this.x);
+        System.out.println("y " + this.y);
+        p.aktualizacja(time);
+        this.x = adapter.ostatecznaPozycjaX(p.getX());
+        this.y = adapter.ostatecznaPozycjaY(p.getY());
     }
 }

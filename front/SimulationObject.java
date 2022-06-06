@@ -20,3 +20,4 @@ public abstract class SimulationObject extends JComponent
     public abstract void tick();
 
 }
+

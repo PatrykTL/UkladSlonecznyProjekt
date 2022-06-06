@@ -1,36 +1,27 @@
 package front;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.*;
-import java.awt.*;
-import java.io.IOException;
+
+public class Menu implements ActionListener {
+    public Menu() {
+        JFrame f = new JFrame("Menu Demo");
+        f.setSize(800, 800);
+
+        f.add(new JButton("Start"));
 
 
-public class Menu extends JFrame {
-    private JButton start = new JButton("Start");
-    private JButton exit = new JButton("Exit");
-    private JPanel panel = new JPanel();
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-    public Menu() throws IOException {
-        super("Solar system");
-
-        //ImageIcon backgroundImage = new ImageIcon("background.png");
-        //Image img=backgroundImage.getImage();
-        //Image temp=img.getScaledInstance(500,600,Image.SCALE_SMOOTH);
-        //backgroundImage=new ImageIcon(temp);
-        //JLabel back=new JLabel(backgroundImage);
-
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        panel.setLayout(new GridBagLayout());
-        panel.add(start);
-        panel.add(exit);
-        panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-
-        add(panel);
-        //add(back);
-        setSize(500,600);
-        setLocationRelativeTo(null);
-
-        setVisible(true);
+        f.setVisible(true);
+    }
+    public void actionPerformed(ActionEvent ae) {
+        String comStr = ae.getActionCommand();
+        System.out.println(comStr + " Selected");
+    }
+    public static void main(String args[]) {
+        new Menu();
     }
 }

@@ -4,12 +4,12 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 
 public class Sun {
-    private double mass;
-    public Sun(double masa)
+    private BigDecimal mass;
+    public Sun(BigDecimal masa)
     {
         this.mass=masa;
     }
-    public double getMass(){
+    public BigDecimal getMass(){
         return mass;
     }
 

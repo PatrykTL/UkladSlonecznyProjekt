@@ -1,5 +1,6 @@
 package front;
 
+import back.Adapter;
 import back.Planet;
 import back.Sun;
 import front.SPlanet;
@@ -12,6 +13,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.math.MathContext;
 import java.util.LinkedList;
 
 public class Simulation extends JPanel {
@@ -19,30 +21,39 @@ public class Simulation extends JPanel {
     private final static Dimension WINDOWS_DIMENSION = Toolkit.getDefaultToolkit().getScreenSize();
     private double centerX;
     private double centerY;
+    private BigDecimal maxOdleglosc;
+    private MathContext mc;
 
     public Simulation() {
 
         centerY = (double) WINDOWS_DIMENSION.height / 2;
         centerX = (double) WINDOWS_DIMENSION.width / 2;
-        Sun s = new Sun(10000);
-        Planet p1 = new Planet(0, 100, s, 12.5, 0);
-        Planet p2 = new Planet(0, 200, s, 7, 0);
-        Planet p3 = new Planet(0, 300, s, 5, 0);
-        Planet p4 = new Planet(0, 400, s, 3, 0);
-        Planet p5 = new Planet(0, 500, s, 2, 0);
-        Planet p6 = new Planet(0, 600, s, 1, 0);
-        Planet p7 = new Planet(0, 700, s, 0.5, 0);
-        Planet p8 = new Planet(0, 800, s, 0.25, 0);
+
+        mc=new MathContext(50);
+
+        Sun s = new Sun(new BigDecimal("1988400000000000000000000000000"));
+        Planet p1 = new Planet(new BigDecimal("69610000"), new BigDecimal("0"), s, new BigDecimal("0"), new BigDecimal("172404"),mc);
+        Planet p2 = new Planet(new BigDecimal("108310000"),new BigDecimal("0"), s, new BigDecimal("0"), new BigDecimal("126108"),mc);
+        Planet p3 = new Planet(new BigDecimal("108310000"), new BigDecimal("0"), s, new BigDecimal("0"), new BigDecimal("107218"),mc);
+        Planet p4 = new Planet(new BigDecimal("207260000"), new BigDecimal("0"), s, new BigDecimal("0"), new BigDecimal("86425"),mc);
+        Planet p5 = new Planet(new BigDecimal("757500000"), new BigDecimal("0"), s, new BigDecimal("0"), new BigDecimal("47052"),mc);
+        Planet p6 = new Planet(new BigDecimal("1464890000"), new BigDecimal("0"), s, new BigDecimal("0"), new BigDecimal("34848"),mc);
+        Planet p7 = new Planet(new BigDecimal("3000580000"), new BigDecimal("0"), s, new BigDecimal("0"), new BigDecimal("24480"),mc);
+        Planet p8 = new Planet(new BigDecimal("4486540000"), new BigDecimal("0"), s, new BigDecimal("0"), new BigDecimal("19548"),mc);
+
+        maxOdleglosc = new BigDecimal("4986540000");
+
+        Adapter adapter = new Adapter(centerX,centerY,maxOdleglosc);
 
         object.add(new SStar(centerX, centerY));
-        object.add(new SPlanet(p1, centerX, centerY));
-        object.add(new SPlanet(p2, centerX, centerY));
-        object.add(new SPlanet(p3, centerX, centerY));
-        object.add(new SPlanet(p4, centerX, centerY));
-        object.add(new SPlanet(p5, centerX, centerY));
-        object.add(new SPlanet(p6, centerX, centerY));
-        object.add(new SPlanet(p7, centerX, centerY));
-        object.add(new SPlanet(p8, centerX, centerY));
+        object.add(new SPlanet(p1, adapter));
+        object.add(new SPlanet(p2, adapter));
+        object.add(new SPlanet(p3, adapter));
+        object.add(new SPlanet(p4, adapter));
+        object.add(new SPlanet(p5, adapter));
+        object.add(new SPlanet(p6, adapter));
+        object.add(new SPlanet(p7, adapter));
+        object.add(new SPlanet(p8, adapter));
 
 
         Timer timer = new Timer(30, new ActionListener() {
