@@ -42,6 +42,8 @@ public class Simulation extends JPanel implements MouseListener, MouseWheelListe
 
         mc=new MathContext(50);
 
+        int roz = 15;
+
         Sun s = new Sun(new BigDecimal("1988400000000000000000000000000"));
         Planet p1 = new Planet(new BigDecimal("69610000"), new BigDecimal("0"), s, new BigDecimal("0"), new BigDecimal("172404"),mc);
         Planet p2 = new Planet(new BigDecimal("108310000"),new BigDecimal("0"), s, new BigDecimal("0"), new BigDecimal("126108"),mc);
@@ -59,44 +61,44 @@ public class Simulation extends JPanel implements MouseListener, MouseWheelListe
         adapter = new Adapter(centerX,centerY, odleglosc);
 
         object.add(new SStar(centerX, centerY,ImageIO.read(new
-                File("C:\\Users\\pweso\\IdeaProjects\\UkladSlonecznyProjekt\\out\\images\\slonce.PNG")).getScaledInstance(50,50,Image.SCALE_DEFAULT))
+                File("C:\\Users\\pweso\\IdeaProjects\\UkladSlonecznyProjekt\\out\\images\\slonce.PNG")).getScaledInstance(25,25,Image.SCALE_DEFAULT))
         );
         object.add(new SPlanet(p1, adapter, "Merkury",
                 ImageIO.read(new
-                        File("C:\\Users\\pweso\\IdeaProjects\\UkladSlonecznyProjekt\\out\\images\\merkury.PNG")).getScaledInstance(30,30,Image.SCALE_DEFAULT)
+                        File("C:\\Users\\pweso\\IdeaProjects\\UkladSlonecznyProjekt\\out\\images\\merkury.PNG")).getScaledInstance(roz,roz,Image.SCALE_DEFAULT)
 
         ));
         object.add(new SPlanet(p2, adapter, "Wenus",
                 ImageIO.read(new
-                        File("C:\\Users\\pweso\\IdeaProjects\\UkladSlonecznyProjekt\\out\\images\\wenus.PNG")).getScaledInstance(30,30,Image.SCALE_DEFAULT)
+                        File("C:\\Users\\pweso\\IdeaProjects\\UkladSlonecznyProjekt\\out\\images\\wenus.PNG")).getScaledInstance(roz,roz,Image.SCALE_DEFAULT)
 
         ));
         object.add(new SPlanet(p3, adapter,"Ziemia",
                 ImageIO.read(new
-                        File("C:\\Users\\pweso\\IdeaProjects\\UkladSlonecznyProjekt\\out\\images\\ziemia.PNG")).getScaledInstance(30,30,Image.SCALE_DEFAULT)
+                        File("C:\\Users\\pweso\\IdeaProjects\\UkladSlonecznyProjekt\\out\\images\\ziemia.PNG")).getScaledInstance(roz,roz,Image.SCALE_DEFAULT)
         ));
         object.add(new SPlanet(p4, adapter,"Mars",
                 ImageIO.read(new
-                        File("C:\\Users\\pweso\\IdeaProjects\\UkladSlonecznyProjekt\\out\\images\\mars.PNG")).getScaledInstance(30,30,Image.SCALE_DEFAULT)
+                        File("C:\\Users\\pweso\\IdeaProjects\\UkladSlonecznyProjekt\\out\\images\\mars.PNG")).getScaledInstance(roz,roz,Image.SCALE_DEFAULT)
         ));
         object.add(new SPlanet(p5, adapter,"Jowisz",
                 ImageIO.read(new
-                        File("C:\\Users\\pweso\\IdeaProjects\\UkladSlonecznyProjekt\\out\\images\\jowisz.PNG")).getScaledInstance(30,30,Image.SCALE_DEFAULT)
+                        File("C:\\Users\\pweso\\IdeaProjects\\UkladSlonecznyProjekt\\out\\images\\jowisz.PNG")).getScaledInstance(roz,roz,Image.SCALE_DEFAULT)
 
         ));
         object.add(new SPlanet(p6, adapter,"Saturn",
                 ImageIO.read(new
-                        File("C:\\Users\\pweso\\IdeaProjects\\UkladSlonecznyProjekt\\out\\images\\saturn.PNG")).getScaledInstance(60,30,Image.SCALE_DEFAULT)
+                        File("C:\\Users\\pweso\\IdeaProjects\\UkladSlonecznyProjekt\\out\\images\\saturn.PNG")).getScaledInstance(2*roz,roz,Image.SCALE_DEFAULT)
 
         ));
         object.add(new SPlanet(p7, adapter,"Uran",
                 ImageIO.read(new
-                        File("C:\\Users\\pweso\\IdeaProjects\\UkladSlonecznyProjekt\\out\\images\\uran.PNG")).getScaledInstance(30,30,Image.SCALE_DEFAULT)
+                        File("C:\\Users\\pweso\\IdeaProjects\\UkladSlonecznyProjekt\\out\\images\\uran.PNG")).getScaledInstance(roz,roz,Image.SCALE_DEFAULT)
 
         ));
         object.add(new SPlanet(p8, adapter,"Nepturn",
                 ImageIO.read(new
-                        File("C:\\Users\\pweso\\IdeaProjects\\UkladSlonecznyProjekt\\out\\images\\neptun.PNG")).getScaledInstance(30,30,Image.SCALE_DEFAULT)
+                        File("C:\\Users\\pweso\\IdeaProjects\\UkladSlonecznyProjekt\\out\\images\\neptun.PNG")).getScaledInstance(roz,roz,Image.SCALE_DEFAULT)
 
         ));
 
