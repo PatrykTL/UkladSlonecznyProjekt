@@ -9,7 +9,11 @@ public class Adapter {
     private double centerY;
     private BigDecimal maxOdleglosc;
 
-    public Adapter(double centerX,double centerY, BigDecimal maxOdleglosc){
+    public void setMaxOdleglosc(String maxOdleglosc) {
+        this.maxOdleglosc =new BigDecimal(maxOdleglosc);
+    }
+
+    public Adapter(double centerX, double centerY, BigDecimal maxOdleglosc){
         this.centerX = centerX;
         this.centerY = centerY;
         this.maxOdleglosc = maxOdleglosc;

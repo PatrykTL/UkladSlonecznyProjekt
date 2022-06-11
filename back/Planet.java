@@ -70,8 +70,8 @@ public class Planet {
         actualizationOfDistance();
         actualizationOfSpeed(czas);
         //System.out.println("odleglosc: "+odleglosc);
-        System.out.println("predkoscX: "+speedX);
-        System.out.println("predkoscY: "+speedY);
+        //System.out.println("predkoscX: "+speedX);
+        //System.out.println("predkoscY: "+speedY);
         //System.out.println("x= "+ this.x + " y= " + this.y);
     }
     public void setX(BigDecimal x)
