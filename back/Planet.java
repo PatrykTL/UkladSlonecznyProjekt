@@ -21,7 +21,7 @@ public class Planet {
         this.mc = mc;
         this.x=x;
         this.y=y;
-        this.odleglosc= (BigDecimal) ((x.add(x)).add(y.add(y)).sqrt(mc));
+        this.odleglosc= (BigDecimal) ((x.multiply(x)).add(y.multiply(y))).sqrt(mc);
         this.speedX = speedX;
         this.speedY = speedY;
         //System.out.println("odleglosc: "+odleglosc);
