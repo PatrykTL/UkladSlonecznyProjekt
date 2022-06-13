@@ -3,22 +3,17 @@ package front;
 import back.Adapter;
 import back.Planet;
 import back.Sun;
-import front.SPlanet;
-import front.SStar;
-import front.SimulationObject;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.awt.image.BufferedImage;
+import java.awt.event.MouseWheelEvent;
 import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.math.MathContext;
 import java.util.LinkedList;
-import java.awt.event.MouseWheelEvent;
 
 public class Simulation extends JPanel implements MouseListener, MouseWheelListener {
     LinkedList<SimulationObject> object = new LinkedList<>();
@@ -61,44 +56,44 @@ public class Simulation extends JPanel implements MouseListener, MouseWheelListe
         adapter = new Adapter(centerX,centerY, odleglosc);
 
         object.add(new SStar(centerX, centerY,ImageIO.read(new
-                File("C:\\Users\\pweso\\IdeaProjects\\UkladSlonecznyProjekt\\out\\images\\slonce.PNG")).getScaledInstance(25,25,Image.SCALE_DEFAULT))
+                File("out/images/slonce.PNG")).getScaledInstance(25,25,Image.SCALE_DEFAULT))
         );
         object.add(new SPlanet(p1, adapter, "Merkury",
                 ImageIO.read(new
-                        File("C:\\Users\\pweso\\IdeaProjects\\UkladSlonecznyProjekt\\out\\images\\merkury.PNG")).getScaledInstance(roz,roz,Image.SCALE_DEFAULT)
+                        File("out/images/merkury.png")).getScaledInstance(roz,roz,Image.SCALE_DEFAULT)
 
         ));
         object.add(new SPlanet(p2, adapter, "Wenus",
                 ImageIO.read(new
-                        File("C:\\Users\\pweso\\IdeaProjects\\UkladSlonecznyProjekt\\out\\images\\wenus.PNG")).getScaledInstance(roz,roz,Image.SCALE_DEFAULT)
+                        File("out/images/wenus.png")).getScaledInstance(roz,roz,Image.SCALE_DEFAULT)
 
         ));
         object.add(new SPlanet(p3, adapter,"Ziemia",
                 ImageIO.read(new
-                        File("C:\\Users\\pweso\\IdeaProjects\\UkladSlonecznyProjekt\\out\\images\\ziemia.PNG")).getScaledInstance(roz,roz,Image.SCALE_DEFAULT)
+                        File("out/images/ziemia.PNG")).getScaledInstance(roz,roz,Image.SCALE_DEFAULT)
         ));
         object.add(new SPlanet(p4, adapter,"Mars",
                 ImageIO.read(new
-                        File("C:\\Users\\pweso\\IdeaProjects\\UkladSlonecznyProjekt\\out\\images\\mars.PNG")).getScaledInstance(roz,roz,Image.SCALE_DEFAULT)
+                        File("out/images/mars.PNG")).getScaledInstance(roz,roz,Image.SCALE_DEFAULT)
         ));
         object.add(new SPlanet(p5, adapter,"Jowisz",
                 ImageIO.read(new
-                        File("C:\\Users\\pweso\\IdeaProjects\\UkladSlonecznyProjekt\\out\\images\\jowisz.PNG")).getScaledInstance(roz,roz,Image.SCALE_DEFAULT)
+                        File("out/images/jowisz.PNG")).getScaledInstance(roz,roz,Image.SCALE_DEFAULT)
 
         ));
         object.add(new SPlanet(p6, adapter,"Saturn",
                 ImageIO.read(new
-                        File("C:\\Users\\pweso\\IdeaProjects\\UkladSlonecznyProjekt\\out\\images\\saturn.PNG")).getScaledInstance(2*roz,roz,Image.SCALE_DEFAULT)
+                        File("out/images/saturn.PNG")).getScaledInstance(2*roz,roz,Image.SCALE_DEFAULT)
 
         ));
         object.add(new SPlanet(p7, adapter,"Uran",
                 ImageIO.read(new
-                        File("C:\\Users\\pweso\\IdeaProjects\\UkladSlonecznyProjekt\\out\\images\\uran.PNG")).getScaledInstance(roz,roz,Image.SCALE_DEFAULT)
+                        File("out/images/uran.PNG")).getScaledInstance(roz,roz,Image.SCALE_DEFAULT)
 
         ));
         object.add(new SPlanet(p8, adapter,"Nepturn",
                 ImageIO.read(new
-                        File("C:\\Users\\pweso\\IdeaProjects\\UkladSlonecznyProjekt\\out\\images\\neptun.PNG")).getScaledInstance(roz,roz,Image.SCALE_DEFAULT)
+                        File("out/images/neptun.PNG")).getScaledInstance(roz,roz,Image.SCALE_DEFAULT)
 
         ));
 
